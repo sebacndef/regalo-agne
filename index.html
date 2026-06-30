@@ -135,6 +135,9 @@
     border-radius: 14px;
     overflow: hidden;
     border: 0.5px solid rgba(220,120,140,0.3);
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .video-wrapper.visible {
@@ -143,7 +146,7 @@
 
   .video-wrapper iframe {
     width: 100%;
-    aspect-ratio: 16/9;
+    aspect-ratio: 9/16;
     border: none;
     display: block;
   }
@@ -207,7 +210,7 @@
     const wrapper = document.getElementById('videoWrapper');
     const frame = document.getElementById('videoFrame');
     const btn = document.getElementById('playBtn');
-    frame.src = 'https://drive.google.com/file/d/1E6xhGuj5dVmj123w8MfgH6fI8mNcjuIB/preview?rm=minimal';
+    frame.src = 'https://drive.google.com/file/d/1E6xhGuj5dVmj123w8MfgH6fI8mNcjuIB/preview';
     wrapper.classList.add('visible');
     btn.style.display = 'none';
   }
