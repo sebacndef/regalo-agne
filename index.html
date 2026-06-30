@@ -234,28 +234,31 @@
   </div>
 </div>
 
+<script src="https://player.vimeo.com/api/player.js"></script>
 <script>
+  let vimeoPlayer = null;
+
   function showVideo() {
     const wrapper = document.getElementById('videoWrapper');
     const frame = document.getElementById('videoFrame');
     const btn = document.getElementById('playBtn');
     const fsBtn = document.getElementById('fullscreenBtn');
-    frame.src = 'https://drive.google.com/file/d/1E6xhGuj5dVmj123w8MfgH6fI8mNcjuIB/preview?rm=minimal';
+    frame.src = 'https://player.vimeo.com/video/1205656747?h=008ee1ca59&title=0&byline=0&portrait=0&dnt=1';
     wrapper.classList.add('visible');
     btn.style.display = 'none';
     fsBtn.style.display = 'inline-flex';
+
+    vimeoPlayer = new Vimeo.Player(frame);
   }
 
   function goFullscreen() {
-    const frame = document.getElementById('videoFrame');
-    if (frame.requestFullscreen) {
-      frame.requestFullscreen();
-    } else if (frame.webkitRequestFullscreen) {
-      frame.webkitRequestFullscreen();
-    } else if (frame.webkitEnterFullscreen) {
-      frame.webkitEnterFullscreen();
-    } else if (frame.mozRequestFullScreen) {
-      frame.mozRequestFullScreen();
+    if (vimeoPlayer) {
+      vimeoPlayer.requestFullscreen().catch(() => {
+        const frame = document.getElementById('videoFrame');
+        if (frame.requestFullscreen) frame.requestFullscreen();
+        else if (frame.webkitEnterFullscreen) frame.webkitEnterFullscreen();
+        else if (frame.webkitRequestFullscreen) frame.webkitRequestFullscreen();
+      });
     }
   }
 
